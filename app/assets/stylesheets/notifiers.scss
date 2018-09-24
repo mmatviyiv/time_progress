@@ -1,0 +1,60 @@
+.notifier {
+  .actions {
+    a {
+      font-size: 1.5rem;
+
+      &.remove{
+        color: #B00100;
+        &:hover {
+          color: #860504;
+        }
+      }
+
+      &.save {
+        color: #358a44;
+        display: none;
+        &:hover {
+          color: #216b2e;
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.new-notifier {
+    a.edit {
+      display: none;
+    }
+
+    a.save {
+      display: inline;
+    }
+  }
+
+  .notifier-errors {
+    color: #B00100;
+  }
+}
+
+.notifier-container {
+  h4 {
+    margin: 1rem 0;
+  }
+
+  a.add-notifier {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: block;
+    border-top: 1px dotted #007bff;
+    border-bottom: 1px dotted #007bff;
+    &:hover {
+      text-decoration: none;
+      border-color: #0056b3;
+    }
+  }
+}

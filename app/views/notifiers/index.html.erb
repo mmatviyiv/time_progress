@@ -1,0 +1,32 @@
+<% Notifier.progress_types.values.each do |type| %>
+  <div class="notifier-container">
+    <h4><%= type.titleize %> notifiers</h4>
+    <div class="container">
+      <div class="<%= type %>-notifiers list-notifiers">
+        <% notifiers = @all_notifiers.where(progress_type: type) %>
+
+        <% if notifiers.empty? %>
+          <p>nothing has been configured so far</p>
+        <% end %>
+
+        <% notifiers.each do |notifier| %>
+          <%= render 'notifier', notifier: notifier %>
+        <% end %>
+
+        <% if @notifier and @notifier.progress_type == type %>
+          <%= render 'notifier', notifier: @notifier %>
+        <% end %>
+      </div>
+
+      <div class="template" style="display: none;">
+        <%= render 'notifier', notifier: Notifier.new(progress_type: type) %>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <%= link_to 'add more', '#', class: 'add-notifier' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

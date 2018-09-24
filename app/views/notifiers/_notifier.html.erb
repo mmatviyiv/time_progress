@@ -1,0 +1,62 @@
+<%= form_for notifier, html: {class: "row notifier #{notifier.new_record? ? 'new-notifier' : ''}"} do %>
+  <%= hidden_field_tag :progress_type, notifier.progress_type %>
+  <%= hidden_field_tag :timezone, notifier.timezone %>
+
+  <div class="col col-sm-1 actions">
+    <% remove_link = notifier.new_record? ? '#' : notifier_path(notifier) %>
+    <%= link_to remove_link, method: :delete, class: 'remove', title: 'remove' do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+    <%= link_to '#', class: 'edit', title: 'edit' do %>
+      <i class="fa fa-pencil"></i>
+    <% end %>
+    <%= link_to '#', class: 'save', title: 'save' do %>
+      <i class="fa fa-save"></i>
+    <% end %>
+  </div>
+
+  <div class="col col-sm-11">
+    <div class="row">
+      <div class="col col-sm-8">
+
+        <div class="form-group">
+          <%= select_tag :channel_id, build_channels_list(@channels_list, notifier), class: 'form-control', disabled: notifier.persisted? %>
+        </div>
+
+      </div>
+      <div class="col col-sm-4">
+
+        <div class="form-group">
+          <div class="input-group bootstrap-timepicker timepicker">
+            <%= text_field_tag :time, notifier.time, class: 'form-control', placeholder: 'time', disabled: notifier.persisted?, 'data-provide': 'timepicker', 'data-show-meridian': 'false' %>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+
+        <div class="form-group">
+          <% build_week_days(notifier).each do |day| %>
+            <div class="form-check form-check-inline">
+              <%= check_box_tag 'weekdays[]', day[:value], day[:checked], class: 'form-check-input', disabled: notifier.persisted? %>
+              <label class="form-check-label"><%= day[:name] %></label>
+            </div>
+          <% end %>
+        </div>
+
+        <ul class="form-group notifier-errors">
+          <% notifier.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<% end %>

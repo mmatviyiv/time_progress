@@ -1,0 +1,32 @@
+html, body {
+  height: 100%;
+  background-color: #e9ecef;
+}
+
+.container.h-100 {
+  padding-top: 2rem;
+}
+
+.jumbotron {
+  padding: 2rem;
+  background-color: #fff;
+
+  pre {
+    font-size: 7pt;
+    line-height: 8pt;
+    font-family: 'Courier New', Monospace;
+    white-space: pre;
+  }
+
+  hr {
+    margin: 1rem 0 2rem;
+  }
+}
+
+.sign-in-box {
+  padding: 0 50px;
+
+  a.add-to-slack:hover {
+    text-decoration: none;
+  }
+}
